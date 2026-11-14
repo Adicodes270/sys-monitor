@@ -1,0 +1,16 @@
+{
+  "pill.cpu": "CPU",
+  "pill.ram": "RAM",
+  "panel.title": "SYSTEM TELEMETRY",
+  "panel.online": "LIVE",
+  "panel.uptime": "Uptime",
+  "panel.cpuUsage": "CPU Usage",
+  "panel.load": "Load",
+  "panel.temp": "Temp",
+  "panel.memory": "Memory (RAM)",
+  "panel.swap": "Swap",
+  "panel.topProcs": "Top Processes",
+  "panel.launchBtop": "Launch Btop",
+  "panel.refresh": "Refresh",
+  "tooltip.hint": "Cyber System Monitor (Click for details, Right-click for Btop)"
+}

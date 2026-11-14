@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "aditya27003.cyber-sysmon",
+  "name": "Cyber System Monitor",
+  "version": "1.0.0",
+  "author": "Aditya Kumar",
+  "description": "Electric cyberpunk live system resource monitor (CPU, RAM, Swap & Uptime) with interactive telemetry popup for Omarchy shell.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "defaultSection": "right"
+  }
+}
