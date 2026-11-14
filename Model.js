@@ -19,7 +19,7 @@ function parseSections(text) {
 function parseCpu(text) {
   var lines = String(text || "").split("\n")
   var total = null
-  var cores = []
+  var threads = []
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i].replace(/^\s+|\s+$/g, "")
@@ -33,7 +33,20 @@ function parseCpu(text) {
 
     var sample = { total: sum, idle: idle }
     if (match[1] === "") total = sample
-    else cores.push(sample)
+    else threads.push(sample)
+  }
+
+  // Merge SMT/Hyper-Threading pairs (12 threads -> 6 physical cores)
+  var cores = threads
+  if (threads.length === 12) {
+    cores = []
+    var half = threads.length / 2
+    for (var k = 0; k < half; k++) {
+      cores.push({
+        total: threads[k].total + threads[k + half].total,
+        idle: threads[k].idle + threads[k + half].idle
+      })
+    }
   }
 
   return { total: total, cores: cores }
@@ -298,8 +311,8 @@ function formatUptime(seconds) {
 
 function formatUptimeCompact(seconds) {
   var p = uptimeParts(seconds)
-  if (p.days > 0) return p.days + "d" + pad2(p.hours) + "h"
-  if (p.hours > 0) return p.hours + "h" + pad2(p.minutes) + "m"
+  if (p.days > 0) return p.days + "d " + pad2(p.hours) + "h " 
+  if (p.hours > 0) return p.hours + "h " + pad2(p.minutes) + "m "
   return p.minutes + "m"
 }
 

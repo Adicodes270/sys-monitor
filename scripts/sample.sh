@@ -84,3 +84,4 @@ ps -eo pid=,comm=,%cpu=,%mem= --sort=-%cpu 2>/dev/null | head -n 8 | awk '
     gsub(/[<>&]/, "", $0)
     print pid "|" $0 "|" cpu "|" mem
   }'
+

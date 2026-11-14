@@ -76,11 +76,11 @@ BarWidget {
   property var prevCores: []
   property var prevNet: null
   property real prevNetTime: 0
-
+  // "#22d3ee"
   // ---- theme --------------------------------------------------------------
   readonly property color foreground: bar ? bar.barForeground : Color.foreground
   readonly property color urgentColor: bar ? bar.urgent : Color.urgent
-  readonly property color accentMain: neon ? "#22d3ee" : Color.accent
+  readonly property color accentMain: neon ? "#22d3ee": Color.accent  
   readonly property color accentAlt: neon ? "#c084fc" : Color.accent
   readonly property color warnColor: neon ? "#fbbf24" : Util.alpha(foreground, 0.8)
   readonly property color dimColor: Util.alpha(foreground, 0.55)
@@ -265,7 +265,7 @@ BarWidget {
       glyph: "",
       text: Model.formatUptimeCompact(root.uptimeSeconds),
       width: uptimeMetrics.width,
-      tone: root.dimColor,
+      tone: root.accentAlt, // Changed from root.dimColor so the clock icon pops
       textColor: root.foreground
     })
 
@@ -527,15 +527,18 @@ BarWidget {
       }
     }
 
-    // Capsule frame. Subtle on idle, accent-tinted on hover and while open.
+
     Rectangle {
       anchors.fill: parent
       radius: Style.cornerRadius > 0 ? height / 2 : 0
-      color: Util.alpha(root.foreground, button.tooltipHovered ? 0.10 : (root.opened ? 0.08 : 0.035))
+      color: Util.alpha(
+        "#111116",
+        button.tooltipHovered ? 0.85 : (root.opened ? 0.88 : 0.72)
+      )
       border.width: 1
       border.color: Util.alpha(
         root.opened || button.tooltipHovered ? root.accentMain : root.foreground,
-        button.tooltipHovered ? 0.45 : (root.opened ? 0.50 : 0.14)
+        button.tooltipHovered ? 0.45 : (root.opened ? 0.50 : 0.16)
       )
 
       Behavior on color {
@@ -557,7 +560,7 @@ BarWidget {
       RowLayout {
         id: hudRow
         anchors.centerIn: parent
-        spacing: 0
+        spacing: 10
 
         Repeater {
           model: root.hudModel
@@ -620,7 +623,7 @@ BarWidget {
     property real fontSize: Style.font.caption
     property color separatorColor: Color.foreground
 
-    spacing: Style.space(2)
+    spacing: Style.space(6)
     Layout.alignment: Qt.AlignVCenter
 
     Rectangle {
