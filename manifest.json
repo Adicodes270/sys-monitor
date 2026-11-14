@@ -1,10 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "aditya27003.cyber-sysmon",
-  "name": "Cyber System Monitor",
-  "version": "1.0.0",
+  "id": "aditya27003.sys-analytics",
+  "name": "Sys Analytics",
+  "version": "2.1.0",
   "author": "Aditya Kumar",
-  "description": "Electric cyberpunk live system resource monitor (CPU, RAM, Swap & Uptime) with interactive telemetry popup for Omarchy shell.",
+  "license": "MIT",
+  "description": "Realtime single-row HUD for CPU, memory, temperature, network speed, disk usage, and uptime, with a full telemetry panel.",
   "kinds": [
     "bar-widget"
   ],
@@ -12,6 +13,30 @@
     "barWidget": "BarWidget.qml"
   },
   "barWidget": {
-    "defaultSection": "right"
+    "displayName": "Sys Analytics",
+    "description": "Live CPU, RAM, temperature, network, disk, and uptime in one compact bar row. Click for per-core load, top processes, and history graphs.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "showCpu": true,
+      "showMem": true,
+      "showTemp": true,
+      "showNet": true,
+      "showDisk": true,
+      "showUptime": false,
+      "neon": true,
+      "intervalMs": 1000
+    },
+    "schema": [
+      { "key": "showCpu", "type": "boolean", "label": "Show CPU usage in the bar", "defaultValue": true },
+      { "key": "showMem", "type": "boolean", "label": "Show memory usage in the bar", "defaultValue": true },
+      { "key": "showTemp", "type": "boolean", "label": "Show CPU temperature in the bar", "defaultValue": true },
+      { "key": "showNet", "type": "boolean", "label": "Show network download speed in the bar", "defaultValue": true },
+      { "key": "showDisk", "type": "boolean", "label": "Show disk usage in the bar", "defaultValue": true },
+      { "key": "showUptime", "type": "boolean", "label": "Show uptime in the bar", "defaultValue": false },
+      { "key": "neon", "type": "boolean", "label": "Use neon cyan and violet HUD accents", "defaultValue": true },
+      { "key": "intervalMs", "type": "integer", "label": "Sample interval (milliseconds)", "min": 500, "max": 2000, "step": 500, "defaultValue": 1000 }
+    ]
   }
 }
